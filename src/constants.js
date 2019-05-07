@@ -80,7 +80,7 @@ export default {
               label: 'Default Recovery',
               fluid: true,
             }
-          ]
+          ],
         },
         {
           name: 'rinse',

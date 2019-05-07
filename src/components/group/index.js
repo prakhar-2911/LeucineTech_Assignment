@@ -118,7 +118,6 @@ class Group extends React.Component {
                 <Button
                   primary={this.state.open[index]}
                   type="button"
-                  name={button.name}
                   onClick={() => this.handleClick(index)}
                 >
                   {this.state.open[index]
@@ -147,6 +146,7 @@ class Group extends React.Component {
                           </RadioGroup>
                         );
                       }
+                      
                       return (
                         <Input
                           key={field.name}
@@ -154,7 +154,9 @@ class Group extends React.Component {
                           handleChange={this.props.handleInput}
                         />
                       )
-                    })}
+                    })
+                    }
+                    
                   </Card>
                 )}
               </React.Fragment>

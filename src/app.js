@@ -4,6 +4,8 @@ import Input from './components/input';
 import Dropdown from './components/dropdown';
 import constants from './constants';
 import Group from './components/group';
+import Button from './components/button';
+
 import './styles.css';
 const Container = styled.div`
   width: 25%;
@@ -29,6 +31,7 @@ class App extends React.Component {
 
     this.handleInput = this.handleInput.bind(this);
     this.handleDropdown = this.handleDropdown.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInput() { }
@@ -37,6 +40,17 @@ class App extends React.Component {
     this.setState({
       target_residue_type: e.value
     });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const obj = {};
+    for (let element of document.forms.leucene.elements) {
+      if (element.name) {
+        obj[element.name] = element.value;
+      }
+    }
+    window.localStorage.setItem('form', JSON.stringify(obj));
   }
 
   render() {
@@ -70,7 +84,6 @@ class App extends React.Component {
                 {...constants.customSection[this.state.target_residue_type]}
               />
             )}
-
             {constants.sections[1].fields.map(field => {
               return (
                 <Input
@@ -80,6 +93,7 @@ class App extends React.Component {
                 />
               );
             })}
+            <Button type="submit" onClick={this.handleSubmit}>Submit</Button>
           </Flexbox>
         </Container>
       </form>
